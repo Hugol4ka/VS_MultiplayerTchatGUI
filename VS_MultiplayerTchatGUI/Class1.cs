@@ -14,13 +14,20 @@ namespace VS_MultiplayerTchatGUI
             base.StartServerSide(api);
             apiServeur = api;
 
+
+            api.Server.Logger.Notification("Mod de Tchat activé avec succès !");
             api.Event.PlayerChat += OnPlayerChat;
         }
 
         private void OnPlayerChat(IServerPlayer joueur, int canalId, ref string message, ref string displayName, BoolRef consume)
         {
 
-            string codeClasse = joueur.Entity?.WatchedAttributes.GetString("characterClass") ?? "commoner";
+            string codeClasse = "commoner";
+            if (joueur?.Entity?.WatchedAttributes != null)
+            {
+                codeClasse = joueur.Entity.WatchedAttributes.GetString("characterClass", "commoner");
+            }
+            
             string prefix = "";
 
             switch (codeClasse)
