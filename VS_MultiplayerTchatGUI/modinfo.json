@@ -1,0 +1,9 @@
+{
+  "type": "code",
+  "id": "vsmultiplayertchatgui",
+  "name": "VS Multiplayer Tchat GUI",
+  "version": "1.0.0",
+  "description": "Add prefix colors according to the player's class in the chat.",
+  "authors": ["LakaRtn"],
+  "side": "server"
+}

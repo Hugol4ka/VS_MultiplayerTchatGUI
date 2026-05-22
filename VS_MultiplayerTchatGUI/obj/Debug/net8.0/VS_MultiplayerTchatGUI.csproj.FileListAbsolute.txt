@@ -1,0 +1,6 @@
+/root/Betty/VS_MultiplayerTchatGUI/VS_MultiplayerTchatGUI/obj/Debug/net8.0/VS_MultiplayerTchatGUI.csproj.AssemblyReference.cache
+/root/Betty/VS_MultiplayerTchatGUI/VS_MultiplayerTchatGUI/obj/Debug/net8.0/VS_MultiplayerTchatGUI.GeneratedMSBuildEditorConfig.editorconfig
+/root/Betty/VS_MultiplayerTchatGUI/VS_MultiplayerTchatGUI/obj/Debug/net8.0/VS_MultiplayerTchatGUI.AssemblyInfoInputs.cache
+/root/Betty/VS_MultiplayerTchatGUI/VS_MultiplayerTchatGUI/obj/Debug/net8.0/VS_MultiplayerTchatGUI.AssemblyInfo.cs
+/root/Betty/VS_MultiplayerTchatGUI/VS_MultiplayerTchatGUI/obj/Debug/net8.0/VS_MultiplayerTchatGUI.csproj.CoreCompileInputs.cache
+/root/Betty/VS_MultiplayerTchatGUI/VS_MultiplayerTchatGUI/obj/Debug/net8.0/VS_MultiplayerTchatGUI.sourcelink.json
