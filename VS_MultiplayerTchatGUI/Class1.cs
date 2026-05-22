@@ -1,34 +1,32 @@
 ﻿using Vintagestory.API.Common;
 using Vintagestory.API.Server;
-using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 
 namespace VS_MultiplayerTchatGUI
 {
     public class VS_MultiplayerTchatGUIModSystem : ModSystem
     {
-        private ICoreServerAPI? apiServeur;
-
         public override void StartServerSide(ICoreServerAPI api)
         {
             base.StartServerSide(api);
-            apiServeur = api;
 
 
-            api.Server.Logger.Notification("Mod de Tchat activé avec succès !");
             api.Event.PlayerChat += OnPlayerChat;
         }
 
         private void OnPlayerChat(IServerPlayer joueur, int canalId, ref string message, ref string displayName, BoolRef consume)
         {
+            if (joueur == null) return;
+
 
             string codeClasse = "commoner";
-            if (joueur?.Entity?.WatchedAttributes != null)
+            if (joueur.Entity?.WatchedAttributes != null)
             {
                 codeClasse = joueur.Entity.WatchedAttributes.GetString("characterClass", "commoner");
             }
-            
+
             string prefix = "";
+
 
             switch (codeClasse)
             {
