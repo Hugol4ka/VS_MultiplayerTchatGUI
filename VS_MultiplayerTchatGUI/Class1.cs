@@ -12,6 +12,7 @@ namespace VS_MultiplayerTchatGUI
         {
             base.StartServerSide(api);
             apiServer = api;
+
             api.Event.PlayerChat += OnPlayerChat;
         }
 
@@ -19,14 +20,15 @@ namespace VS_MultiplayerTchatGUI
         {
             if (joueur == null || apiServer == null) return;
 
+            // 1. Récupération de la classe du joueur
             string codeClasse = "commoner";
             if (joueur.Entity?.WatchedAttributes != null)
             {
                 codeClasse = joueur.Entity.WatchedAttributes.GetString("characterClass", "commoner");
             }
 
+            // 2. Détermination du préfixe coloré
             string prefix = "";
-
             switch (codeClasse)
             {
                 case "commoner": prefix = "[#9b9ea1][Citoyen][#FFFFFF] "; break;
@@ -48,11 +50,14 @@ namespace VS_MultiplayerTchatGUI
                 default: prefix = $"[#9b9ea1][{codeClasse}][#FFFFFF] "; break;
             }
 
+            // 3. On bloque le tchat de base du jeu pour éviter les doublons
             consume.value = true;
 
-            string messageFormate = $"{prefix}{joueur.PlayerName}: {message}";
+            // 4. On fabrique le message final formaté à notre sauce
+            string messageFormate = $"{prefix}**{joueur.PlayerName}**: {message}";
 
-            apiServer.SendMessageToGroup(canalId, messageFormate, EnumChatType.OthersMessage);
+            // 5. On l'envoie manuellement à TOUS les joueurs connectés sur le serveur
+            apiServer.SendMessageToGroup(Vintagestory.API.Config.GlobalConstants.AllPlayersChatGroup, messageFormate, EnumChatType.GeneralMessage);
         }
     }
 }

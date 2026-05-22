@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VS_MultiplayerTchatGUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00ce3be24e1701ce0dd3bb1c73062072ae9bfbbb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb9f06dffa55164fd212a123c2d5e70f9f275971")]
 [assembly: System.Reflection.AssemblyProductAttribute("VS_MultiplayerTchatGUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VS_MultiplayerTchatGUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
