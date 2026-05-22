@@ -56,8 +56,8 @@ namespace VS_MultiplayerTchatGUI
             // 4. On fabrique le message final formaté à notre sauce
             string messageFormate = $"{prefix}**{joueur.PlayerName}**: {message}";
 
-            // 5. On l'envoie manuellement à TOUS les joueurs connectés sur le serveur
-            apiServer.SendMessageToGroup(Vintagestory.API.Config.GlobalConstants.AllPlayersChatGroup, messageFormate, EnumChatType.GeneralMessage);
+            // 5. On l'envoie manuellement sur le MÊME canal (canalId) avec le bon type Enum
+            apiServer.SendMessageToGroup(canalId, messageFormate, EnumChatType.OthersMessage);
         }
     }
 }
