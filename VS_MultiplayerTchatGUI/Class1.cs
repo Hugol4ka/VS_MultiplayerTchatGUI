@@ -27,36 +27,44 @@ namespace VS_MultiplayerTchatGUI
                 codeClasse = joueur.Entity.WatchedAttributes.GetString("characterClass", "commoner");
             }
 
-            // 2. Détermination du préfixe coloré
-            string prefix = "";
+            // 2. Définition de la couleur et du nom traduit selon la classe
+            string couleur = "#9b9ea1"; // Gris par défaut
+            string nomClasse = "Citoyen";
+
             switch (codeClasse)
             {
-                case "commoner": prefix = "[#9b9ea1][Citoyen][#FFFFFF] "; break;
-                case "archivist": prefix = "[#f1c40f][Archiviste][#FFFFFF] "; break;
-                case "blackguard": prefix = "[#d9381e][Garde Noir][#FFFFFF] "; break;
-                case "brickmaker": prefix = "[#d35400][Briquetier][#FFFFFF] "; break;
-                case "butcher": prefix = "[#e74c3c][Boucher][#FFFFFF] "; break;
-                case "clockmaker": prefix = "[#00cea6][Horloger][#FFFFFF] "; break;
-                case "farmhand": prefix = "[#2ecc71][Fermier][#FFFFFF] "; break;
-                case "florist": prefix = "[#ff69b4][Fleuriste][#FFFFFF] "; break;
-                case "forester": prefix = "[#27ae60][Forestier][#FFFFFF] "; break;
-                case "hunter": prefix = "[#e67e22][Chasseur][#FFFFFF] "; break;
-                case "malefactor": prefix = "[#9b59b6][Malfaiteur][#FFFFFF] "; break;
-                case "messenger": prefix = "[#3498db][Messager][#FFFFFF] "; break;
-                case "quarrier": prefix = "[#7f8c8d][Carrier][#FFFFFF] "; break;
-                case "spelunker": prefix = "[#a0522d][Spéléologue][#FFFFFF] "; break;
-                case "tailor": prefix = "[#e84393][Tailleur][#FFFFFF] "; break;
-                case "vintner": prefix = "[#800020][Vigneron][#FFFFFF] "; break;
-                default: prefix = $"[#9b9ea1][{codeClasse}][#FFFFFF] "; break;
+                case "archivist": couleur = "#f1c40f"; nomClasse = "Archiviste"; break;
+                case "blackguard": couleur = "#d9381e"; nomClasse = "Garde Noir"; break;
+                case "brickmaker": couleur = "#d35400"; nomClasse = "Briquetier"; break;
+                case "butcher": couleur = "#e74c3c"; nomClasse = "Boucher"; break;
+                case "clockmaker": couleur = "#00cea6"; nomClasse = "Horloger"; break;
+                case "farmhand": couleur = "#2ecc71"; nomClasse = "Fermier"; break;
+                case "florist": couleur = "#ff69b4"; nomClasse = "Fleuriste"; break;
+                case "forester": couleur = "#27ae60"; nomClasse = "Forestier"; break;
+                case "hunter": couleur = "#e67e22"; nomClasse = "Chasseur"; break;
+                case "malefactor": couleur = "#9b59b6"; nomClasse = "Malfaiteur"; break;
+                case "messenger": couleur = "#3498db"; nomClasse = "Messager"; break;
+                case "quarrier": couleur = "#7f8c8d"; nomClasse = "Carrier"; break;
+                case "spelunker": couleur = "#a0522d"; nomClasse = "Spéléologue"; break;
+                case "tailor": couleur = "#e84393"; nomClasse = "Tailleur"; break;
+                case "vintner": couleur = "#800020"; nomClasse = "Vigneron"; break;
+                case "commoner": 
+                default: 
+                    couleur = "#9b9ea1"; 
+                    nomClasse = (codeClasse == "commoner") ? "Citoyen" : codeClasse; 
+                    break;
             }
 
-            // 3. On bloque le tchat de base du jeu pour éviter les doublons
+            // 3. Création du préfixe avec la syntaxe HTML de Vintage Story
+            string prefix = $"<font color=\"{couleur}\">[{nomClasse}]</font> ";
+
+            // 4. On bloque le message par défaut du jeu
             consume.value = true;
 
-            // 4. On fabrique le message final formaté à notre sauce
-            string messageFormate = $"{prefix}**{joueur.PlayerName}**: {message}";
+            // 5. On assemble le préfixe et le message (qui contient déjà le "Pseudo: texte")
+            string messageFormate = prefix + message;
 
-            // 5. On l'envoie manuellement sur le MÊME canal (canalId) avec le bon type Enum
+            // 6. On diffuse le message finalisé sur le canal
             apiServer.SendMessageToGroup(canalId, messageFormate, EnumChatType.OthersMessage);
         }
     }
