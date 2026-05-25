@@ -1,9 +1,9 @@
 {
-  "type": "code",
-  "id": "vsmultiplayertchatgui",
+  "type": "mod",
+  "modid": "vsmultiplayertchatgui",
   "name": "VS Multiplayer Tchat GUI",
-  "version": "1.0.0",
-  "description": "Add prefix colors according to the player's class in the chat.",
   "authors": ["LakaRtn"],
-  "side": "universal"
+  "description": "Add prefix (FRENCH) to the tchat message and color prefix with the Class color",
+  "version": "1.0.0",
+  "side": "server"
 }
