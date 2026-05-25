@@ -6,7 +6,6 @@ namespace VS_MultiplayerTchatGUI
 {
     public class VS_MultiplayerTchatGUIModSystem : ModSystem
     {
-
         private ICoreServerAPI apiServer = null!; 
 
         public override void StartServerSide(ICoreServerAPI api)
@@ -23,11 +22,11 @@ namespace VS_MultiplayerTchatGUI
             consume.value = true;
 
             string texteBrut = message;
-            string ciblePseudo = joueur.PlayerName + ": ";
-            
-            if (texteBrut.StartsWith(ciblePseudo))
+
+            int indexDeuxPoints = texteBrut.IndexOf(':');
+            if (indexDeuxPoints != -1)
             {
-                texteBrut = texteBrut.Substring(ciblePseudo.Length);
+                texteBrut = texteBrut.Substring(indexDeuxPoints + 1).Trim();
             }
 
             string codeClasse = "commoner";
@@ -41,7 +40,7 @@ namespace VS_MultiplayerTchatGUI
 
             switch (codeClasse)
             {
-                case "archivist": couleurClasse = "#f1c40f"; nomClasse = "Archiviste"; break;
+                case "archivist": couleurClasse = "#a38921"; nomClasse = "Archiviste"; break;
                 case "blackguard": couleurClasse = "#d9381e"; nomClasse = "Garde Noir"; break;
                 case "brickmaker": couleurClasse = "#d35400"; nomClasse = "Briquetier"; break;
                 case "butcher": couleurClasse = "#e74c3c"; nomClasse = "Boucher"; break;
@@ -59,18 +58,18 @@ namespace VS_MultiplayerTchatGUI
                 default: couleurClasse = "#9b9ea1"; nomClasse = "Citoyen"; break;
             }
 
-            string role = joueur.Role?.Code?.ToLower() ?? "player";
+            string role = joueur.Role?.Code?.ToLower() ?? "suplayer";
             string couleurStaff = "";
             string nomStaff = "";
             bool estStaff = false;
 
             if (role == "admin")
             {
-                couleurStaff = "#e74c3c";
+                couleurStaff = "#f81f07";
                 nomStaff = "Admin";
                 estStaff = true;
             }
-            else if (role == "moderator")
+            else if (role == "sumod" || role == "crmod")
             {
                 couleurStaff = "#3498db";
                 nomStaff = "Modo";
@@ -78,7 +77,7 @@ namespace VS_MultiplayerTchatGUI
             }
             else if (role == "helper" || role == "helpeur")
             {
-                couleurStaff = "#f1c40f";
+                couleurStaff = "#f8c804";
                 nomStaff = "Helper";
                 estStaff = true;
             }
@@ -87,11 +86,11 @@ namespace VS_MultiplayerTchatGUI
 
             if (estStaff)
             {
-                messageFormate = $"<font color=\"{couleurStaff}\">[{nomStaff}]</font> <font color=\"{couleurClasse}\">[{nomClasse}]</font> <strong>{joueur.PlayerName}</strong>: {texteBrut}";
+                messageFormate = $"<font color=\"{couleurStaff}\">[{nomStaff}]</font><font color=\"{couleurClasse}\">[{nomClasse}]</font><strong>{joueur.PlayerName}</strong>: {texteBrut}";
             }
             else
             {
-                messageFormate = $"<font color=\"{couleurClasse}\">[{nomClasse}]</font> <strong>{joueur.PlayerName}</strong>: {texteBrut}";
+                messageFormate = $"<font color=\"{couleurClasse}\">[{nomClasse}]</font><strong>{joueur.PlayerName}</strong>: {texteBrut}";
             }
 
             apiServer.SendMessageToGroup(canalId, messageFormate, EnumChatType.Notification);
