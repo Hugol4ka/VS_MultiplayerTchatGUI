@@ -71,14 +71,8 @@ namespace VS_MultiplayerTchatGUI
             }
             else if (role == "sumod" || role == "crmod")
             {
-                couleurStaff = "#3498db";
-                nomStaff = "Modo";
-                estStaff = true;
-            }
-            else if (role == "helper" || role == "helpeur")
-            {
-                couleurStaff = "#f8c804";
-                nomStaff = "Helper";
+                couleurStaff = "#e8e004";
+                nomStaff = "Helpeur";
                 estStaff = true;
             }
 
