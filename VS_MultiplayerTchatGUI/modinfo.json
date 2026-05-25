@@ -3,7 +3,7 @@
   "modid": "vsmultiplayertchatgui",
   "name": "VS Multiplayer Tchat GUI",
   "authors": ["LakaRtn"],
-  "description": "Add prefix (FRENCH) to the tchat message and color prefix with the Class color",
+  "description": "Add prefix class (FRENCH) to the tchat message and color prefix for staff",
   "version": "1.0.0",
   "side": "server"
 }
