@@ -6,13 +6,13 @@ namespace VS_MultiplayerTchatGUI
 {
     public class VS_MultiplayerTchatGUIModSystem : ModSystem
     {
-        private ICoreServerAPI apiServer;
+
+        private ICoreServerAPI apiServer = null!; 
 
         public override void StartServerSide(ICoreServerAPI api)
         {
             base.StartServerSide(api);
             apiServer = api;
-
             api.Event.PlayerChat += OnPlayerChat;
         }
 
@@ -41,7 +41,7 @@ namespace VS_MultiplayerTchatGUI
 
             switch (codeClasse)
             {
-                case "archivist": couleurClasse = "#a48f38"; nomClasse = "Archiviste"; break;
+                case "archivist": couleurClasse = "#f1c40f"; nomClasse = "Archiviste"; break;
                 case "blackguard": couleurClasse = "#d9381e"; nomClasse = "Garde Noir"; break;
                 case "brickmaker": couleurClasse = "#d35400"; nomClasse = "Briquetier"; break;
                 case "butcher": couleurClasse = "#e74c3c"; nomClasse = "Boucher"; break;
@@ -52,7 +52,7 @@ namespace VS_MultiplayerTchatGUI
                 case "hunter": couleurClasse = "#e67e22"; nomClasse = "Chasseur"; break;
                 case "malefactor": couleurClasse = "#9b59b6"; nomClasse = "Malfaiteur"; break;
                 case "messenger": couleurClasse = "#3498db"; nomClasse = "Messager"; break;
-                case "quarrier": couleurClasse = "#7f8c8d"; nomCarrier = "Carrier"; break;
+                case "quarrier": couleurClasse = "#7f8c8d"; nomClasse = "Carrier"; break;
                 case "spelunker": couleurClasse = "#a0522d"; nomClasse = "Spéléologue"; break;
                 case "tailor": couleurClasse = "#e84393"; nomClasse = "Tailleur"; break;
                 case "vintner": couleurClasse = "#800020"; nomClasse = "Vigneron"; break;
@@ -66,7 +66,7 @@ namespace VS_MultiplayerTchatGUI
 
             if (role == "admin")
             {
-                couleurStaff = "#f2230c";
+                couleurStaff = "#e74c3c";
                 nomStaff = "Admin";
                 estStaff = true;
             }
@@ -78,7 +78,7 @@ namespace VS_MultiplayerTchatGUI
             }
             else if (role == "helper" || role == "helpeur")
             {
-                couleurStaff = "#e4b809";
+                couleurStaff = "#f1c40f";
                 nomStaff = "Helper";
                 estStaff = true;
             }
